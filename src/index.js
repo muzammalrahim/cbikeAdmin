@@ -24,19 +24,19 @@ import ProtectedRoute from "components/ProtectedRoute";
 import Admin from "layouts/Admin.js";
 import RTL from "layouts/RTL.js";
 import "assets/css/material-dashboard-react.css?v=1.10.0";
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <>
     <BrowserRouter>
-    <ToastContainer/>
-    <Switch>
-      <Route exact path="/" component={Login}/>
-      <Route path="/admin" component={Admin} />
-      {/* <Redirect from="/" to="/admin" /> */}
-    </Switch>
+      <ToastContainer />
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <ProtectedRoute path="/admin" component={Admin} />
+        {/* <Redirect from="/" to="/admin" /> */}
+      </Switch>
     </BrowserRouter>
-    </>,
+  </>,
   document.getElementById("root")
 );
