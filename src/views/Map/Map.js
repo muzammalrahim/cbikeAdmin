@@ -54,9 +54,11 @@ const TimeEntries = () => {
             <thead className="thead-dark">
               <tr>
                 <th scope="col">#</th>
+                <th scope="col">Station Name</th>
                 <th scope="col">Location</th>
-                {/* <th scope="col">Bike Number</th>
-                <th scope="col">Docks Number</th> */}
+                <th scope="col">Bike Number</th>
+                <th scope="col">Docks Number</th>
+                <th scope="col">Description</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -64,9 +66,11 @@ const TimeEntries = () => {
               {map?.map((map, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
+                  <td>{map.station_name}</td>
                   <td>{map.longitude}, {map.latitude}</td>
-                  {/* <td>{map.num_bike}</td>
-                  <td>{map.num_docks}</td> */}
+                  <td>{map.num_bike}</td>
+                  <td>{map.num_docks}</td>
+                  <td>{map.description}</td>
                   <td>
                     <Tooltip
                       id="tooltip-top"

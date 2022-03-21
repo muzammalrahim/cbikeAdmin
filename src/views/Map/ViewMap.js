@@ -15,12 +15,12 @@ const ViewMap = () => {
     loadMap();
   }, []);
   const loadMap = async () => {
- 
+
     axios.get(`${process.env.REACT_APP_API_URL}getMap/${id}`)
-    .then((res) => {
-      setMaps(res.data.data);
-    })
-    .catch(() => {});
+      .then((res) => {
+        setMaps(res.data.data);
+      })
+      .catch(() => { });
 
   };
   return (
@@ -31,9 +31,11 @@ const ViewMap = () => {
       <h1 className="display-4">Map Id: {id}</h1>
       <hr />
       <ul className="list-group w-50">
-        <li className="list-group-item">Location: {map.longitude}, { map.latitude}</li>
-        {/* <li className="list-group-item">Bike Number: {map.num_bike}</li>
-        <li className="list-group-item">Docks Number: {map.num_docks}</li> */}
+        <li className="list-group-item">Station Name: {map.station_name}</li>
+        <li className="list-group-item">Location: {map.longitude}, {map.latitude}</li>
+        <li className="list-group-item">Bike Number: {map.num_bike}</li>
+        <li className="list-group-item">Docks Number: {map.num_docks}</li>
+        <li className="list-group-item">Description: {map.description}</li>
       </ul>
     </div>
   );

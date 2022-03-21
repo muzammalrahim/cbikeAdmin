@@ -7,6 +7,14 @@ import CurrentMarker from "components/CurrentMarker";
 
 export default function AddMap() {
   let history = useHistory();
+  const [map, setMap] = useState({
+    station_name: "",
+    num_bike: "",
+    num_docks: "",
+    description: "",
+  })
+
+  const { station_name, num_bike, num_docks, description } = map
   const [longitude, setLongitude] = useState("")
   const [latitude, setLatitude] = useState("")
 
@@ -30,21 +38,24 @@ export default function AddMap() {
   // });
 
   // const { location, image, num_bike, num_docks} = map;
-  // const onInputChange = e => {
-  //   setMap({ ...map, [e.target.name]: e.target.value });
-  // };
+  const onInputChange = e => {
+    setMap({ ...map, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = async e => {
     e.preventDefault()
+    let payload = {
+      station_name: map.station_name,
+      num_bike: map.num_bike,
+      num_docks: map.num_docks,
+      description: map.description,
+      longitude,
+      latitude
+    }
     try {
-      // let payload = {
-      //   longitude: longitude,
-      //   latitude: latitude
-      // }
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}save-map`, { longitude, latitude })
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}save-map`, payload)
       console.log("map res", res.data.data);
-      setLongitude(res.data);
-      setLatitude(res.data)
+      setMap(res.data);
       history.push("/admin/map");
     } catch (err) {
       console.log(err);
@@ -57,13 +68,13 @@ export default function AddMap() {
       <div className="w-75 mx-auto shadow p-5">
         <h2 className="text-center mb-4">Add A Map</h2>
         <form onSubmit={e => onSubmit(e)}>
-          {/* <div className="form-group">
+          <div className="form-group">
             <input
               type="text"
               className="form-control form-control-lg"
-              placeholder="Enter Your location"
-              name="location"
-              value={location}
+              placeholder="Enter Your station name"
+              name="station_name"
+              value={station_name}
               onChange={e => onInputChange(e)}
             />
           </div>
@@ -81,12 +92,22 @@ export default function AddMap() {
             <input
               type="text"
               className="form-control form-control-lg"
-              placeholder="Enter Your docks number"
+              placeholder="Enter Your dock number"
               name="num_docks"
               value={num_docks}
               onChange={e => onInputChange(e)}
             />
-          </div> */}
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control form-control-lg"
+              placeholder="Enter Your description"
+              name="description"
+              value={description}
+              onChange={e => onInputChange(e)}
+            />
+          </div>
           <div className='map'>
             <GoogleMapReact
               bootstrapURLKeys={{ key: "AIzaSyD6Huc36x8W0XJt1cUhyqCXMdQ1xiwx_Rs" }}

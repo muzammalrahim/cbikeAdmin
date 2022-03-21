@@ -26,8 +26,8 @@ const Login = () => {
     await post(`login`, { email: login.email, password: login.password })
       .then((res) => {
         if (res.data.success === true) {
-          setLogin(res.data);
           toast.success(res.data.response)
+          setLogin(res.data);
           setAuthorizationToken(res.data.token)
           history.push("/admin");
         }

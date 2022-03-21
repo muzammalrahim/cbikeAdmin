@@ -20,6 +20,7 @@
     "emailjs-com": "^3.2.0",
     "firebase": "4.8",
     "google-map-react": "^2.1.10",
+    "google-maps-react": "^2.0.6",
     "history": "^5.0.1",
     "json-server": "^0.16.1",
     "linking": "^0.1.0-beta.5",

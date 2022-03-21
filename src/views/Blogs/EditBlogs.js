@@ -63,7 +63,7 @@ const EditBlogs = () => {
       history.push("/admin/blogs")
     });
     loadBlog()
-    history.push("/admin/blogs");
+    history.push("blogs");
   };
 
   const loadBlog = () => {

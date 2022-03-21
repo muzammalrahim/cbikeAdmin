@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import get,{put} from "../../helper/api"
+import get, { put } from "../../helper/api"
 
 const EditCategory = () => {
   let history = useHistory();
@@ -10,8 +10,8 @@ const EditCategory = () => {
   const [category, setCategory] = useState({
     name: "",
   });
-const [loading,isLoading]=useState(false)
-  
+  const [loading, isLoading] = useState(false)
+
   const onInputChange = e => {
     setCategory({ ...category, [e.target.name]: e.target.value });
   };
@@ -19,7 +19,7 @@ const [loading,isLoading]=useState(false)
   useEffect(() => {
     loadCategory();
   }, []);
- 
+
   const onSubmit = async e => {
     e.preventDefault();
     let payload = {
@@ -29,19 +29,19 @@ const [loading,isLoading]=useState(false)
       history.push("/admin/categories")
     });
     loadCategory()
-    history.push("/admin/categories");
+    history.push("categories");
   };
 
   const loadCategory = () => {
-  isLoading(true)
+    isLoading(true)
     get(`getCategory/${id}`)
-    .then((res) => {
-      isLoading(false)
-      setCategory(res.data.data);
-    })
-    .catch(() => {});
+      .then((res) => {
+        isLoading(false)
+        setCategory(res.data.data);
+      })
+      .catch(() => { });
   };
-  const { name} = category;
+  const { name } = category;
   return loading ? (
     "loading..."
   ) : (
