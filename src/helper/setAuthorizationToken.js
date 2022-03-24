@@ -1,3 +1,3 @@
 export const setAuthorizationToken = (token) => {
-    localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("adminToken", JSON.stringify(token));
 }
